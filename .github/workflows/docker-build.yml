@@ -6,19 +6,16 @@ jobs:
   docker-build:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: checkout
+      - name: checkout
         uses: actions/checkout@v2.7.0
-      -
-        name: Docker Login
+      - name: Docker Login
         uses: docker/login-action@v2.1.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-        -
-          names: build and push docker images
-          uses: docker/build-push-action@v4.0.0
-          with:
-            push: true
-            tags: frixe6/getting-started:latest
+      - name: build and push docker images
+        uses: docker/build-push-action@v4.0.0
+        with:
+          push: true
+          tags: frixe6/getting-started:latest
           
